@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import {connect} from 'react-redux';
 
 class App extends Component {
+
+  componentDidMount = () => {
+    this.getFeedbackList()
+  }
+
+  getFeedbackList = () => {
+    axios.get('/feedback')
+      .then(response => {
+        this.props.dispatch({type: 'GET_FEEDBACK_LIST', payload: response.data})
+      })
+  }
   render() {
     return (
       <div className="App">
@@ -16,4 +28,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapReduxStoreToProps = reduxStore => ({
+  reduxStore
+})
+
+export default connect(mapReduxStoreToProps)(App);
