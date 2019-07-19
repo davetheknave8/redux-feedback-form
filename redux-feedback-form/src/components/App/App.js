@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import {connect} from 'react-redux';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+
+//Importing Routes
+import Feeling from '../FeelingRoute/Feeling';
+import Understanding from '../UnderstandingRoute/Understanding';
+import Support from '../SupportRoute/Support';
+import Comments from '../CommentsRoute/Comments';
+import Review from '../ReviewRoute/Review';
+import Confirmation from '../ConfirmationRoute/Confirmation';
+import Admin from '../AdminRoute/Admin';
 
 class App extends Component {
 
@@ -15,14 +25,19 @@ class App extends Component {
         this.props.dispatch({type: 'GET_FEEDBACK_LIST', payload: response.data})
       })
   }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Feedback!</h1>
-          <h4><i>Don't forget it!</i></h4>
-        </header>
-        <br/>
+        <Router>
+          <Route path="/" exact component={Feeling} />
+          <Route path="/understanding" component={Understanding} />
+          <Route path="/support" component={Support} />
+          <Route path="/comments" component={Comments} />
+          <Route path="/review" component={Review} />
+          <Route path="/confirmation" component={Confirmation} />
+          <Route path="/admin" component={Admin} />
+        </Router>
       </div>
     );
   }
