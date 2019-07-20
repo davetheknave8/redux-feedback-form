@@ -2,6 +2,16 @@ import React, {Component} from 'react';
 import Header from '../Header/Header';
 import {connect} from 'react-redux';
 import Review from '../ReviewRoute/Review';
+import TextField from '@material-ui/core/TextField';
+import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    input: {
+        width: '300px',
+        margin: theme.spacing.unit
+    }
+})
 
 class Feeling extends Component {
 
@@ -15,14 +25,17 @@ class Feeling extends Component {
     }
 
     render(){
+        const {classes} = this.props;
         return(
             <>
             <Header />
             <form onSubmit={event => this.handleSubmit(event)}>
-                <label>How are you feeling today?</label>
-                <input type="number" onChange={(event) => this.handleChange('feeling', event)}/>
-                <button type="submit">Next</button>
+                <TextField className={classes.input} label="How are you feeling today?" type="number" onChange={(event) => this.handleChange('feeling', event)}/>
+                <br />
+                <Button color="primary" variant="contained" type="submit">Next</Button>
             </form>
+            <hr />
+            <br />
             <Review />
             </>
         )
@@ -33,4 +46,4 @@ const mapReduxStoreToProps = reduxStore => ({
     reduxStore
 })
 
-export default connect(mapReduxStoreToProps)(Feeling);
+export default withStyles(styles)(connect(mapReduxStoreToProps)(Feeling));
