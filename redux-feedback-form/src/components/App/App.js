@@ -9,7 +9,7 @@ import Feeling from '../FeelingRoute/Feeling';
 import Understanding from '../UnderstandingRoute/Understanding';
 import Support from '../SupportRoute/Support';
 import Comments from '../CommentsRoute/Comments';
-import Review from '../ReviewRoute/Review';
+import FinalReview from '../FinalReviewRoute/FinalReview';
 import Confirmation from '../ConfirmationRoute/Confirmation';
 import Admin from '../AdminRoute/Admin';
 
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/understanding" component={Understanding} />
           <Route path="/support" component={Support} />
           <Route path="/comments" component={Comments} />
-          <Route path="/review" component={Review} />
+          <Route path="/review" component={FinalReview} />
           <Route path="/confirmation" component={Confirmation} />
           <Route path="/admin" component={Admin} />
         </Router>

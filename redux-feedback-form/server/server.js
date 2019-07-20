@@ -24,6 +24,20 @@ app.get('/feedback', (req, res) => {
         })
 })
 
+app.post('/feedback', (req, res) => {
+    const newFeedback = req.body;
+    const sqlText = `INSERT INTO "feedback"("feeling", "understanding", "support", "comments")
+                        VALUES($1, $2, $3, $4);`;
+    const value = [Number(newFeedback.feeling), Number(newFeedback.understanding), Number(newFeedback.support), newFeedback.comments]
+    pool.query(sqlText, value)
+        .then(response => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            res.sendStatus(500);
+        })
+})
+
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);

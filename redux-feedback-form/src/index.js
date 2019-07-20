@@ -18,9 +18,29 @@ const feedbackListReducer = (state = [], action) => {
     }
 }
 
+const feedbackItemReducer = (state = {feeling: 0, understanding: 0, support: 0, comments: ''}, action) => {
+    if(action.type === 'SET_FEEDBACK_ITEM'){
+        let newProp = action.payload.prop;
+        state = {...state, [newProp]: action.payload.value}
+        return state;
+    } else {
+        return state;
+    }
+}
+
+const disabledReducer = (state = {button: 'disabled'}, action) => {
+    if(action.type === 'ENABLE_BUTTON'){
+        return {button: 'enabled'};
+    } else {
+        return state;
+    }
+}
+
 const reduxStore = createStore(
     combineReducers({
-        feedbackListReducer
+        feedbackListReducer,
+        feedbackItemReducer,
+        disabledReducer
     }),
     applyMiddleware(logger)
 )
