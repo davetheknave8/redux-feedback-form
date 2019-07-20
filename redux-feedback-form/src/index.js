@@ -23,6 +23,9 @@ const feedbackItemReducer = (state = {feeling: 0, understanding: 0, support: 0, 
         let newProp = action.payload.prop;
         state = {...state, [newProp]: action.payload.value}
         return state;
+    } else if(action.type === 'CLEAR_FEEDBACK') {
+        state = { feeling: 0, understanding: 0, support: 0, comments: '' }
+        return state;
     } else {
         return state;
     }

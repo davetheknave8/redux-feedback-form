@@ -6,6 +6,7 @@ class Confirmation extends Component {
 
     handleClick = () => {
         this.props.dispatch({type: 'DISABLE_BUTTON'})
+        this.props.dispatch({type: 'CLEAR_FEEDBACK'})
         this.props.history.push('/');
     }
 
