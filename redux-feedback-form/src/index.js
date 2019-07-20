@@ -31,6 +31,8 @@ const feedbackItemReducer = (state = {feeling: 0, understanding: 0, support: 0, 
 const disabledReducer = (state = {button: 'disabled'}, action) => {
     if(action.type === 'ENABLE_BUTTON'){
         return {button: 'enabled'};
+    } else if(action.type === 'DISABLE_BUTTON'){
+        return {button: 'disabled'};
     } else {
         return state;
     }

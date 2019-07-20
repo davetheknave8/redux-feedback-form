@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button'
 
 class Confirmation extends Component {
 
     handleClick = () => {
+        this.props.dispatch({type: 'DISABLE_BUTTON'})
         this.props.history.push('/');
     }
-    
+
     render() {
         return (
             <>
@@ -21,4 +23,8 @@ class Confirmation extends Component {
     }
 }
 
-export default Confirmation;
+const mapReduxStoreToProps = reduxStore => ({
+    reduxStore
+})
+
+export default connect(mapReduxStoreToProps)(Confirmation);
