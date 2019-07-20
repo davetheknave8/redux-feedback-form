@@ -1,7 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Review from '../ReviewRoute/Review';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    input: {
+        width: '330px',
+        margin: theme.spacing.unit
+    }
+})
 
 class Understanding extends Component {
 
@@ -16,14 +26,18 @@ class Understanding extends Component {
     }
 
     render(){
+        const { classes } = this.props;
         return(
             <>
             <Header />
             <form onSubmit={event => this.handleSubmit(event)}>
-                <label>How well are you understanding the content?</label>
-                <input type="number" onChange={(event) => this.handleChange('understanding', event)}/>
-                <button type="submit">Next</button>
+                <TextField className={classes.input} label="How well are you understanding the content?" type="number" onChange={(event) => this.handleChange('understanding', event)}/>
+                <br />
+                <Button color="primary" variant="contained" type="submit">Next</Button>
             </form>
+            <br />
+            <hr />
+            <br />
             <Review />
             </>
         )
@@ -34,4 +48,4 @@ const mapReduxStoreToProps = reduxStore => ({
     reduxStore
 })
 
-export default connect(mapReduxStoreToProps)(Understanding);
+export default withStyles(styles)(connect(mapReduxStoreToProps)(Understanding));

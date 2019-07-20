@@ -1,7 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Review from '../ReviewRoute/Review';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    input: {
+        width: '330px',
+        margin: theme.spacing.unit
+    }
+})
 
 class Comments extends Component {
 
@@ -21,13 +31,13 @@ class Comments extends Component {
     }
 
     render(){
+        const {classes} = this.props;
         return(
             <>
             <Header />
             <form onSubmit={event => this.handleSubmit(event)}>
-                <label>Have any comments?</label>
-                <input type="text" onChange={(event) => this.handleChange('comments', event)}/>
-                <button type="submit">Next</button>
+                <TextField className={classes.input} label="Have any comments?" type="text" onChange={(event) => this.handleChange('comments', event)}/>
+                <Button color="primary" variant="contained" type="submit">Next</Button>
             </form>
             <Review history={this.props.history}/>
             </>
@@ -39,4 +49,4 @@ const mapReduxStoreToProps = reduxStore => ({
     reduxStore
 })
 
-export default connect(mapReduxStoreToProps)(Comments);
+export default withStyles(styles)(connect(mapReduxStoreToProps)(Comments));

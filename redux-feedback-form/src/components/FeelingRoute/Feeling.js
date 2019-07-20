@@ -34,6 +34,7 @@ class Feeling extends Component {
                 <br />
                 <Button color="primary" variant="contained" type="submit">Next</Button>
             </form>
+            <br />
             <hr />
             <br />
             <Review />

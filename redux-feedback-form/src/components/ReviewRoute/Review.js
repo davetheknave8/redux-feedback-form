@@ -12,6 +12,7 @@ const styles = theme => ({
     card: {
         width: '500px',
         margin: 'auto',
+        marginBottom: '20px'
     },
     button: {
         margin: 'auto'
