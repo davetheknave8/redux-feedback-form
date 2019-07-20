@@ -36,7 +36,7 @@ class App extends Component {
           <Route path="/comments" component={Comments} />
           <Route path="/review" component={FinalReview} />
           <Route path="/confirmation" component={Confirmation} />
-          <Route path="/admin" component={Admin} />
+          <Route getFeedbackList={this.getFeedbackList} path="/admin" component={Admin} />
         </Router>
       </div>
     );

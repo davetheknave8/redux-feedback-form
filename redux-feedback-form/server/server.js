@@ -38,6 +38,33 @@ app.post('/feedback', (req, res) => {
         })
 })
 
+app.delete('/feedback/:id', (req, res) => {
+    const idToDelete = req.params.id;
+    const sqlText = `DELETE FROM "feedback" WHERE "id"=$1;`;
+    const values =[idToDelete];
+    pool.query(sqlText, values)
+        .then(response => {
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            res.sendStatus(500);
+        })
+})
+
+app.put('/feedback/:id', (req, res) => {
+    const idToUpdate= req.params.id;
+    const flagged = req.body.flagged;
+    const sqlText = `UPDATE "feedback" SET "flagged"=$1 WHERE "id"=$2;`;
+    const values = [flagged, idToUpdate];
+    pool.query(sqlText, values)
+        .then(response => {
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            res.sendStatus(500);
+        })
+})
+
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);
